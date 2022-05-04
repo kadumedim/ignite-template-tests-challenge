@@ -1,3 +1,4 @@
+import { ProfileMap } from "@modules/users/mappers/ProfileMap";
 import { injectable, inject } from "tsyringe";
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
@@ -10,7 +11,7 @@ export class ShowUserProfileUseCase {
     private usersRepository: IUsersRepository,
   ) {}
 
-  async execute(user_id: string) {
+  async execute(user_id: string): Promise<ProfileMap> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
